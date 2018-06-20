@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
         Location location = getCurrentCoordinates();
         if (location != null) {
             mainViewModel.getWeather(location.getLatitude(), location.getLongitude());
+        } else {
+            showToast("Unable to get the location");
         }
     }
 
@@ -104,11 +106,16 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("MissingPermission")
     private Location getCurrentCoordinates() {
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (locationManager != null) {
-            Criteria criteria = new Criteria();
-            String provider = locationManager.getBestProvider(criteria, false);
-            return locationManager.getLastKnownLocation(provider);
+        try {
+            if (locationManager != null) {
+                Criteria criteria = new Criteria();
+                String provider = locationManager.getBestProvider(criteria, false);
+                return locationManager.getLastKnownLocation(provider);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
         }
+
         return null;
     }
 
