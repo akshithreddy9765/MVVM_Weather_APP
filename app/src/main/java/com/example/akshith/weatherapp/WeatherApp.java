@@ -2,7 +2,6 @@ package com.example.akshith.weatherapp;
 
 import android.app.Application;
 
-import com.jakewharton.threetenabp.AndroidThreeTen;
 
 public class WeatherApp extends Application {
     private static AppComponent component;
@@ -13,7 +12,6 @@ public class WeatherApp extends Application {
         if (component == null) {
             buildAppComponent();
         }
-        AndroidThreeTen.init(this);
     }
 
     public static AppComponent getComponent() {
