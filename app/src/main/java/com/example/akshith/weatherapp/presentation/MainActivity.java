@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     @Inject
     MainViewModel mainViewModel;
     private ActivityMainBinding dataBinding;
-    private RecyclerView recyclerView;
     private WeatherAdapter weatherAdapter;
     private CompositeDisposable disposable = new CompositeDisposable();
 
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initRecyclerView() {
-        recyclerView = dataBinding.recyclerView;
+        RecyclerView recyclerView = dataBinding.recyclerView;
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
